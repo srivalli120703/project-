@@ -1,96 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login Page</title>
-</head>
-<body>
-<div class="login-container">
-    <h2>Registration</h2>
-    <form action="dashboard.html" id="login-form">
-        <input type="text" id="firstname" placeholder="First Name" required>
-        <input type="text" id="lastname" placeholder="Last Name" required>
-        <input type="email" id="mail" placeholder="E-mail" required>
-        <input type="text" id="mobile" placeholder="Mobile No." required>
-        <input type="text" id="interestedcourse" placeholder="Interested Course" required>
-        <input type="submit" value="Register" onclick="redirectToWelcome()">
-    </form>
-</div>
-<style>
-    body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    background-image: url(bgimage.jpg);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <title>login page</title>
+    </head>
 
-.login-container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-    width: 300px;
-}
+    <body>
+        <h1>REGISTRATION</h1>
+        <form action="dashboard.html" id="login-form" name="RegForm" onsubmit="return validateForm()">
+        <p>
+            <label for="name">Name:</label>
+            <input
+                type="text"
+                id="name"
+                name="Name"
+                placeholder="Enter your full name"
+            />
+            <span
+                id="name-error"
+                class="error-message"
+            ></span>
+        </p>
+                <label for="phnno"
+                    >Mobile Number:</label
+                >
+                <input
+                    type="number"
+                    id="phnno"
+                    name="Mobile no"
+                    placeholder="Enter your mobile number"
+                />
+                <span
+                    id="phnno-error"
+                    class="error-message"
+                ></span>
+            </p>
+            <p>
+                <label for="email"
+                    >E-mail Address:</label
+                >
+                <input
+                    type="text"
+                    id="email"
+                    name="EMail"
+                    placeholder="Enter your email"
+                />
+                <span
+                    id="email-error"
+                    class="error-message"
+                ></span>
+            </p>
+            <p>
+                <label for="password"
+                    >Password:</label
+                >
+                <input
+                    type="password"
+                    id="password"
+                    name="Password"
+                    placeholder="Enter your password"
+                />
+                <span
+                    id="password-error"
+                    class="error-message"
+                ></span>
+            </p>
+            <p>
+                <label for="Interested Course"
+                    >Interested Course:</label
+                >
+                <input
+                type="text"
+                id="InterestedCourse"
+                name="Interested Course"
+            />
 
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-}
+                <span
+                    id="InterestedCourse-error"
+                    class="error-message"
+                ></span>
+            </p>
+            <p>
+                <input
+                    type="submit"
+                    value="Register"
+                    name="Submit"
+                    onclick="redirectToWelcome()"
 
-input[type="text"],
-input[type="email"],
-input[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
+                />
+            </p>
+        </form>
+    </body>
+    <style>body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        background-image: url(bgimage.jpg);
+    }
+    
+    h1 {
+        text-align: center;
+        color: #333;
+    }
 
-input[type="submit"] {
-    background-color: #071664;
-    color: white;
-    cursor: pointer;
-}
+    
+    form {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    input[type="text"],
+    input[type="password"],
+    select,
+    textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 16px;
+    }
+    
+    select {
+        width: 100%;
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        font-size: 16px;
+        background-color: #fff;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
+    
+    textarea {
+        resize: vertical;
+    }
+    
+    input[type="submit"],
+    input[type="reset"],
+    input[type="checkbox"] {
+        background-color: #3b0550;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    
+    input[type="submit"]:hover,
+    input[type="reset"]:hover,
+    input[type="checkbox"]:hover {
+        background-color: #0056b3;
+    }
+    
+    .error-message {
+        color: red;
+        font-size: 14px;
+        margin-top: 5px;
+    }</style>
+    <script>
+        function validateForm() {
+    const name =
+        document.getElementById("name").value;
+    const phnno =
+        document.getElementById("phnno").value;
+    const email =
+        document.getElementById("email").value;
+    const password =
+        document.getElementById("password").value;
+    const InterestedCourse =
+        document.getElementById("InterestedCourse").value;
 
-input[type="submit"]:hover {
-    background-color: #170588;
-}
-</style>
-<script>
- document.getElementById("login-form").addEventListener("submit", function(event) {
-    event.preventDefault();
-    var firstname = document.getElementById("firstname").value;
-    var lastname = document.getElementById("lastname").value;
-    var mobile = document.getElementById("mobile").value;
-    var mail = document.getElementById("mail").value;
-    var interestedcourse = document.getElementById("interestedcourse").value;
-    localStorage.setItem("firstname", firstname);
-    localStorage.setItem("lastname", lastname);
-    localStorage.setItem("mobile", mobile);
-    localStorage.setItem("mail", mail);
-    localStorage.setItem("interestedcourse", interestedcourse);
-    displayUserInfo();
-});
-function displayUserInfo() {
-    var firstname = localStorage.getItem("firstname");
-    var lastname = localStorage.getItem("lastname");
-    var mobile = localStorage.getItem("mobile");
-    var mail = localStorage.getItem("mail");
-    var interestedcourse= localStorage.getItem("interestedcourse");
-    var displayDiv = document.getElementById("display-info");
-    displayDiv.innerHTML = "<p>First Name: " + firstname + "</p><p>Last Name: " + lastname + "</p>";
-}
-function redirectToWelcome() {
+    const nameError =
+        document.getElementById("name-error");
+    const phnnoError = document.getElementById(
+        "phnno-error"
+    );
+    const emailError = document.getElementById(
+        "email-error"
+    );
+    const passwordError = document.getElementById(
+        "password-error"
+    );
+    const InterestedCourseError = document.getElementById(
+        "InterestedCourse-error"
+    );
+
+    nameError.textContent = "";
+    phnnoError.textContent = "";
+    emailError.textContent = "";
+    passwordError.textContent = "";
+    InterestedCourseError.textContent = "";
+
+    let isValid = true;
+
+    if (name === "" || /\d/.test(name)) {
+        nameError.textContent =
+            "Please enter your name properly.";
+        isValid = false;
+    }
+
+    if (phnno ==="" || phnno.length < 10) {
+        phnnoError.textContent =
+            "Please check your mobile number.";
+        isValid = false;
+    }
+    if (email === "" || !email.includes("@")) {
+        emailError.textContent =
+            "Please enter a valid email address.";
+        isValid = false;
+    }
+
+    if (password === "" || password.length < 6) {
+        passwordError.textContent =
+            "Please enter a password with at least 6 characters.";
+        isValid = false;
+    }
+
+    if (InterestedCourse === "") {
+        InterestedCourseError.textContent =
+            "Please enter your interested course.";
+        isValid = false;
+    }
+    function redirectToWelcome() {
             window.location.href ="dashboard.html";
 }
-</script>
-</body>
+    
+    return isValid;
+}
+    </script>
 </html>
+
+
+
